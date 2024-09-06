@@ -42,3 +42,5 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 app.listen(port, () => {
     console.log("Application Running on Port =", "localhost:2024", port);
 });
+
+exports.module = app;
