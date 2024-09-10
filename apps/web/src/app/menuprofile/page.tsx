@@ -33,7 +33,7 @@ export default function MenuProfile() {
 
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:2024/menuprofile', {
+        const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+'/menuprofile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -85,7 +85,7 @@ export default function MenuProfile() {
 
     try {
       const token = localStorage.getItem('tkn');
-      const response = await axios.post('http://localhost:2024/profile-images/upload', formData, {
+      const response = await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+'/profile-images/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

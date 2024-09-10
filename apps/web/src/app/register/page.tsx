@@ -33,7 +33,7 @@ export default function Register() {
 
         const fetchPositions = async () => {
             try {
-                const response = await axios.get("http://localhost:2024/positions");
+                const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+"/positions");
                 setPositions(response.data.positions);
             } catch (error) {
                 console.error("Failed to fetch positions:", error);
@@ -67,7 +67,7 @@ export default function Register() {
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
                                 const token = localStorage.getItem('tkn');
-                                const response = await axios.post("http://localhost:2024/register", values, {
+                                const response = await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+"/register", values, {
                                     headers: {
                                         'Authorization': `Bearer ${token}`
                                     }

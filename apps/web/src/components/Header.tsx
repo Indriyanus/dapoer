@@ -38,7 +38,7 @@ export const Header = () => {
   useEffect(() => {
     const token = localStorage.getItem("tkn");
     if (token) {
-      axios.get("http://localhost:2024/user-profile", {
+      axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+"/user-profile", {
         headers: {
           Authorization: `Bearer ${token}`
         }

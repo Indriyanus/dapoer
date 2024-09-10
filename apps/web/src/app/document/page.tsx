@@ -71,7 +71,7 @@ export default function Document() {
 
     const fetchDocuments = async () => {
       try {
-        const response = await axios.get('http://localhost:2024/documents', {
+        const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+'/documents', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -117,7 +117,7 @@ export default function Document() {
         };
 
         try {
-          const response = await axios.post('http://localhost:2024/documents', {
+          const response = await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+'/documents', {
             name: values.file!.name,
             type: values.file!.type,
             size: values.file!.size,

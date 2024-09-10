@@ -37,7 +37,7 @@ export default function ViewMessage() {
 
     const fetchMessages = async () => {
       try {
-        const response = await axios.get("http://localhost:2024/messages", {
+        const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+"/messages", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

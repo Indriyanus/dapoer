@@ -24,7 +24,7 @@ export default function ConfirmRegisterPassword() {
     onSubmit: async (values) => {
       try {
         const { newPassword, token } = values;
-        const response = await axios.post("http://localhost:2024/verify-email", { newPassword, token });
+        const response = await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+"/verify-email", { newPassword, token });
         toast.success(response.data.message);
         router.push("/login");
       } catch (error) {

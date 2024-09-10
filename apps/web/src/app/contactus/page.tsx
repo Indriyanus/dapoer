@@ -19,7 +19,7 @@ export default function ContactUs() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:2024/products/list");
+        const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+"/products/list");
         setProducts(response.data.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -90,7 +90,7 @@ export default function ContactUs() {
               onSubmit={async (values, { resetForm }) => {
                 try {
                   console.log('Sending data:', values);
-                  await axios.post("http://localhost:2024/contact", values);
+                  await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+"/contact", values);
                   toast.success("Message sent successfully!");
                   resetForm();
                 } catch (error) {

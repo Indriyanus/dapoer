@@ -41,7 +41,7 @@ export default function MenuSetting() {
     onSubmit: async (values) => {
       try {
         const token = localStorage.getItem("tkn"); // Ambil token dari local storage
-        const response = await axios.post('http://localhost:2024/change-password', values, {
+        const response = await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+'/change-password', values, {
           headers: {
             Authorization: `Bearer ${token}` // Sertakan token dalam header Authorization
           }

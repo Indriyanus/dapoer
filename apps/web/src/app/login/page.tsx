@@ -41,7 +41,7 @@ export default function Login() {
 
     const mutationAuth = useMutation<AxiosResponse<LoginResponse>, AxiosError<{ message: string }>, LoginValues>({
         mutationFn: async (values) => {
-            return await axios.post("http://localhost:2024/login", {
+            return await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+"/login", {
                 NIK: values.NIK,
                 email: values.email,
                 username: values.username,
@@ -51,7 +51,7 @@ export default function Login() {
         onSuccess: (response) => {
             localStorage.setItem("tkn", response.data.data.token || "");
             setIsLoggedIn(true);
-            axios.get("http://localhost:2024/user-profile", {
+            axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+"/user-profile", {
                 headers: {
                     Authorization: `Bearer ${response.data.data.token}`
                 }
