@@ -6,7 +6,7 @@ import { SlLogout } from "react-icons/sl";
 import { GrLogin } from "react-icons/gr";
 import { FaUser, FaBoxOpen, FaCog, FaListAlt, FaGift } from 'react-icons/fa';
 import { RiMessage2Fill } from "react-icons/ri";
-import { FaUserTie } from "react-icons/fa6";
+import { FaRegCalendarCheck, FaUserTie } from 'react-icons/fa6';
 import { FaUserPlus } from "react-icons/fa6";
 import { HiMiniBuildingOffice } from "react-icons/hi2";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
@@ -152,6 +152,9 @@ export const Header = () => {
                     <a href="/menuprofile" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
                       <FaUserTie className="mr-2" /> Profile
                     </a>
+                    <a href="/attendance" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
+                      <FaRegCalendarCheck className="mr-2" /> Attendance
+                    </a>
                     <a href="/viewmessage" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
                       <RiMessage2Fill className="mr-2" /> View Message
                     </a>
@@ -224,6 +227,9 @@ export const Header = () => {
                   <div className="mt-2 w-full bg-[#cccccc] border rounded-md shadow-lg font-tajawal text-center">
                     <a href="/menuprofile" className="flex justify-center items-center px-4 py-2 hover:bg-[#d4b185]">
                       <FaUserTie className="mr-2" /> Profile
+                    </a>
+                    <a href="/attendance" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
+                      <FaRegCalendarCheck className="mr-2" /> Attendance
                     </a>
                     <a href="/viewmessage" className="flex justify-center items-center px-4 py-2 hover:bg-[#d4b185]">
                       <RiMessage2Fill className="mr-2" /> View Message
