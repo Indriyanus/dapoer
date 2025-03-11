@@ -152,8 +152,8 @@ export const Header = () => {
                     <a href="/menuprofile" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
                       <FaUserTie className="mr-2" /> Profile
                     </a>
-                    <a href="/attendance" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
-                      <FaRegCalendarCheck className="mr-2" /> Attendance
+                    <a href="/attendances" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
+                      <FaRegCalendarCheck className="mr-2" /> Attendances
                     </a>
                     <a href="/viewmessage" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
                       <RiMessage2Fill className="mr-2" /> View Message
@@ -228,8 +228,8 @@ export const Header = () => {
                     <a href="/menuprofile" className="flex justify-center items-center px-4 py-2 hover:bg-[#d4b185]">
                       <FaUserTie className="mr-2" /> Profile
                     </a>
-                    <a href="/attendance" className="flex items-center px-4 py-2 hover:bg-[#d4b185]">
-                      <FaRegCalendarCheck className="mr-2" /> Attendance
+                    <a href="/attendances" className="flex justify-center items-center px-4 py-2 hover:bg-[#d4b185]">
+                      <FaRegCalendarCheck className="mr-2" /> Attendances
                     </a>
                     <a href="/viewmessage" className="flex justify-center items-center px-4 py-2 hover:bg-[#d4b185]">
                       <RiMessage2Fill className="mr-2" /> View Message
