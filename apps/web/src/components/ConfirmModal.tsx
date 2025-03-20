@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -8,6 +8,17 @@ interface ConfirmModalProps {
 }
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm, message }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleConfirm = async () => {
+    setIsLoading(true);
+    try {
+      await onConfirm();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -16,7 +27,9 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm,
         <p dangerouslySetInnerHTML={{ __html: message }}></p>
         <div className="mt-4 flex justify-end">
           <button onClick={onClose} className="mr-2 px-4 py-2 bg-gray-300 hover:scale-105 rounded">Cancel</button>
-          <button onClick={onConfirm} className="px-4 py-2 bg-amber-600 hover:scale-105 text-white rounded">Confirm</button>
+          <button onClick={handleConfirm} className="px-4 py-2 bg-amber-600 hover:scale-105 text-white rounded" disabled={isLoading}>
+            {isLoading ? 'Loading...' : 'Confirm'}
+          </button>
         </div>
       </div>
     </div>
