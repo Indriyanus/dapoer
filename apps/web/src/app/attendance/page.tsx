@@ -26,6 +26,10 @@ export default function MenuProfile() {
   });
 
   useEffect(() => {
+    fetchAttendace()
+  }, []);
+
+  const fetchAttendace = async () => {
     const token = localStorage.getItem('tkn');
     if (!token) {
       // Jika tidak ada token, arahkan ke halaman login
@@ -33,41 +37,44 @@ export default function MenuProfile() {
       return;
     }
 
-    const fetchAttendace = async () => {
-      try {
-        const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+'/attendance', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }).then(response => {
-          const attendanceResponse = response.data.data;
-          setAttendance({
-            ...attendanceResponse,
-            masuk: convertDate(attendanceResponse.masuk),
-            keluar: convertDate(attendanceResponse.keluar),
-            isSubmitting: handleDone(attendanceResponse)
-          });
-        }).catch(() => {
-          setAttendance({
-            id: null,
-            masuk: null,
-            keluar: null,
-            isSubmitting: handleDone({"masuk": null, "keluar": null})
-          });
+    try {
+      const response = await axios.get(process.env.NEXT_PUBLIC_BASE_API_URL+'/attendance', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then(response => {
+        const attendanceResponse = response.data.data;
+        setAttendance({
+          ...attendanceResponse,
+          masuk: convertDate(attendanceResponse.masuk),
+          keluar: convertDate(attendanceResponse.keluar),
+          lokasiKeluar: attendanceResponse.lokasiKeluar,
+          lokasiMasuk: attendanceResponse.lokasiMasuk,
+          isSubmitting: handleDone(attendanceResponse)
         });
+      }).catch(() => {
+        setAttendance({
+          id: null,
+          masuk: null,
+          keluar: null,
+          lokasiKeluar: null,
+          lokasiMasuk: null,
+          isSubmitting: handleDone({"masuk": null, "keluar": null})
+        });
+      });
 
-      } catch (error) {
-        console.error('Error fetching profile:', error);
-      }
+    } catch (error) {
+      console.error('Error fetching profile:', error);
     }
+  }
 
-    fetchAttendace()
-  }, []);
-
-  const handleMasuk = async () => {
+  const handleMasuk = async (coords: any) => {
     try {
       const token = localStorage.getItem('tkn');
-      const response = await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+'/attendance', {}, {
+      const response = await axios.post(process.env.NEXT_PUBLIC_BASE_API_URL+'/attendance', {
+        latMasuk: coords.lat,
+        longMasuk: coords.long
+      }, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -94,10 +101,13 @@ export default function MenuProfile() {
     }
   }
 
-  const handleKeluar = async () => {
+  const handleKeluar = async (coords: any) => {
     try {
       const token = localStorage.getItem('tkn');
-      const response = await axios.patch(process.env.NEXT_PUBLIC_BASE_API_URL+`/attendance/${attendance.id}`, {}, {
+      const response = await axios.patch(process.env.NEXT_PUBLIC_BASE_API_URL+`/attendance/${attendance.id}`, {
+        latKeluar: coords.lat,
+        longKeluar: coords.long
+      }, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -122,18 +132,47 @@ export default function MenuProfile() {
     }
   }
 
-  const handleSave = async () => {
-    if(!(attendance.masuk && attendance.keluar)) {
-      setConfirmAction(() => async () => {
-        if(attendance.masuk && !attendance.keluar) {
-          await handleKeluar();
-        }
-        if (!attendance.masuk && !attendance.keluar) {
-          await handleMasuk();
-        }
-        setIsModalOpen(false);
+  const dapatkanKoordinatSaatIni = async () => {
+    if (navigator.geolocation) {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            resolve({
+              lat: position.coords.latitude,
+              long: position.coords.longitude
+            });
+          },
+          (error) => {
+            toast.error('Failed to get geolocation. Please try again.');
+            reject(error);
+          }
+        );
       });
-      setIsModalOpen(true);
+    } else {
+      toast.error('Geolocation is not supported by this browser. Please enable it.');
+      return Promise.reject('Geolocation not supported');
+    }
+  }
+
+  const handleSave = async () => {
+
+    try {
+      const coords: any = await dapatkanKoordinatSaatIni();
+      // const location = await dapatkanLokasiSaatIni(coords);
+      if(!(attendance.masuk && attendance.keluar)) {
+        setConfirmAction(() => async () => {
+          if(attendance.masuk && !attendance.keluar) {
+            await handleKeluar(coords);
+          }
+          if (!attendance.masuk && !attendance.keluar) {
+            await handleMasuk(coords);
+          }
+          setIsModalOpen(false);
+        });
+        setIsModalOpen(true);
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   }
 

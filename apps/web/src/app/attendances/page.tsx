@@ -89,7 +89,9 @@ const Attendances = () => {
             <th className="border px-4 py-2">NIK</th>
             <th className="border px-4 py-2">Username</th>
             <th className="border px-4 py-2">Clock In</th>
+            <th className="border px-4 py-2">Lokasi Clock In</th>
             <th className="border px-4 py-2">Clock Out</th>
+            <th className="border px-4 py-2">Lokasi Clock Out</th>
           </tr>
           </thead>
           <tbody>
@@ -98,7 +100,9 @@ const Attendances = () => {
               <td className="border px-4 py-2">{attendance['pengguna']['NIK']}</td>
               <td className="border px-4 py-2">{attendance['pengguna']['namaDepan']}</td>
               <td className="border px-4 py-2">{convertDate(attendance['masuk'])}</td>
+              <td className="border px-4 py-2">{attendance['lokasiMasuk']}</td>
               <td className="border px-4 py-2">{convertDate(attendance['keluar'])}</td>
+              <td className="border px-4 py-2">{attendance['lokasiKeluar']}</td>
             </tr>
           ))}
           </tbody>
