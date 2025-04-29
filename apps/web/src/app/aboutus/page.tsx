@@ -259,6 +259,27 @@ export default function AboutUs() {
                         <div className="marquee-item">
                             <Image src="/images/logo/logojavaoffshore.webp" alt="Client Logo Java Offshore" width={200} height={100} loading="lazy" />
                         </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logoweave1.png" alt="Client Logo Weave" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logosurge2.png" alt="Client Logo Surge" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logostarlite3.png" alt="Client Logo Starlite" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logoccsi4.png" alt="Client Logo CCSI" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logon5.png" alt="Client Logo N" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logomayora6.png" alt="Client Logo Mayora" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logobalitower7.png" alt="Client Logo Bali Tower" width={200} height={100} loading="lazy" />
+                        </div>
                         {/* Salinan kedua untuk looping yang mulus */}
                         <div className="marquee-item">
                             <Image src="/images/logo/logobankiindex.webp" alt="Client Logo Bank Index" width={200} height={100} loading="lazy" />
@@ -296,6 +317,27 @@ export default function AboutUs() {
                         <div className="marquee-item">
                             <Image src="/images/logo/logojavaoffshore.webp" alt="Client Logo Java Offshore" width={200} height={100} loading="lazy" />
                         </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logoweave1.png" alt="Client Logo Weave" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logosurge2.png" alt="Client Logo Surge" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logostarlite3.png" alt="Client Logo Starlite" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logoccsi4.png" alt="Client Logo CCSI" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logon5.png" alt="Client Logo N" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logomayora6.png" alt="Client Logo Mayora" width={200} height={100} loading="lazy" />
+                        </div>
+                        <div className="marquee-item">
+                            <Image src="/images/logo/logobalitower7.png" alt="Client Logo Bali Tower" width={200} height={100} loading="lazy" />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -310,8 +352,8 @@ export default function AboutUs() {
 
                 .marquee-content {
                     display: flex;
-                    width: calc(200px * 24); /* 24 items * 200px per item */
-                    animation: marquee 20s linear infinite;
+                    width: calc(200px * 38); /* 24 items * 200px per item */
+                    animation: marquee 30s linear infinite;
                 }
 
                 .marquee-item {
